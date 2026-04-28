@@ -67,7 +67,7 @@ object Presentation:
   ): Vector[DomainError] =
     val normalizedTitle =
       title.trim
-      
+
     val normalizedFooter =
       footer.map(_.trim)
 

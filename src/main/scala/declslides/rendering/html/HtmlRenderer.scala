@@ -11,16 +11,16 @@ import scalatags.Text.all._
 import scalatags.Text.tags2.section
 
 /** HTML renderer for validated presentations.
- *
- * This renderer produces a self-contained HTML document with Tailwind loaded
- * from a CDN and a slide-oriented layout intended for full-screen navigation.
- */
+  *
+  * This renderer produces a self-contained HTML document with Tailwind loaded
+  * from a CDN and a slide-oriented layout intended for full-screen navigation.
+  */
 object HtmlRenderer extends Renderer:
 
-  /** The target render format for this renderer, specifying the label, file extension,
-   * and accepted input formats. This allows the rendering system to identify when
-   * to use this renderer based on the desired output format.
-   */
+  /** The target render format for this renderer, specifying the label, file
+    * extension, and accepted input formats. This allows the rendering system to
+    * identify when to use this renderer based on the desired output format.
+    */
   val Target: RenderFormat =
     RenderFormat(
       label = "html",
@@ -89,10 +89,10 @@ object HtmlRenderer extends Renderer:
     )
 
   private def renderSlide(
-                           number: Int,
-                           slide: Slide,
-                           presentation: Presentation,
-                         ): Frag =
+    number: Int,
+    slide: Slide,
+    presentation: Presentation,
+  ): Frag =
     section(
       cls := slideClasses(slide),
       attr("data-slide") := number.toString,
@@ -126,9 +126,9 @@ object HtmlRenderer extends Renderer:
     )
 
   private def renderElement(
-                             element: SlideElement,
-                             presentation: Presentation,
-                           ): Frag =
+    element: SlideElement,
+    presentation: Presentation,
+  ): Frag =
     element match
       case SlideElement.Paragraph(value) =>
         p(
@@ -167,9 +167,9 @@ object HtmlRenderer extends Renderer:
         renderImage(source, altText)
 
   private def renderImage(
-                           source: String,
-                           altText: String,
-                         ): Frag =
+    source: String,
+    altText: String,
+  ): Frag =
     img(
       src := source,
       alt := altText,
@@ -177,8 +177,8 @@ object HtmlRenderer extends Renderer:
     )
 
   private def renderFooter(
-                            presentation: Presentation,
-                          ): Frag =
+    presentation: Presentation,
+  ): Frag =
     presentation.footer match
       case Some(value) =>
         footer(
@@ -196,8 +196,8 @@ object HtmlRenderer extends Renderer:
 
   private def slideClasses(slide: Slide): String =
     s"h-screen min-h-screen w-full snap-start px-8 py-10 md:px-16 md:py-14 lg:px-24 ${
-      layoutClasses(slide.layout)
-    }"
+        layoutClasses(slide.layout)
+      }"
 
   private def contentContainerClasses(layout: Layout): String =
     layout match
@@ -230,26 +230,27 @@ object HtmlRenderer extends Renderer:
         )
 
   /** Encodes a raw string as a JavaScript string literal.
-   *
-   * This helper escapes the characters that would otherwise break the generated
-   * inline script, such as quotes, backslashes, and control characters. The
-   * returned value already includes the surrounding double quotes.
-   *
-   * @param value
-   *   raw text to embed into an inline JavaScript snippet
-   * @return
-   *   a safely quoted JavaScript string literal
-   */
+    *
+    * This helper escapes the characters that would otherwise break the
+    * generated inline script, such as quotes, backslashes, and control
+    * characters. The returned value already includes the surrounding double
+    * quotes.
+    *
+    * @param value
+    *   raw text to embed into an inline JavaScript snippet
+    * @return
+    *   a safely quoted JavaScript string literal
+    */
   private def toJsStringLiteral(value: String): String =
     val escaped =
       value
         .flatMap {
           case '\\' => "\\\\"
-          case '"'  => "\\\""
+          case '"' => "\\\""
           case '\n' => "\\n"
           case '\r' => "\\r"
           case '\t' => "\\t"
-          case c    => c.toString
+          case c => c.toString
         }
 
     s""""$escaped""""

@@ -68,7 +68,7 @@ object DSL:
         PresentationConfig(
           title = title,
           theme = Theme.default,
-          footer = None
+          footer = None,
         ),
       )(body)
 

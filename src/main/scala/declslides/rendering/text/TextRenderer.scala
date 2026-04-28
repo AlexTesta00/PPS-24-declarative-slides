@@ -15,10 +15,10 @@ import declslides.rendering.Renderer
   */
 object TextRenderer extends Renderer:
 
-  /** The target render format for this renderer, specifying the label, file extension,
-   * and accepted input formats. This allows the rendering system to identify when
-   * to use this renderer based on the desired output format.
-   */
+  /** The target render format for this renderer, specifying the label, file
+    * extension, and accepted input formats. This allows the rendering system to
+    * identify when to use this renderer based on the desired output format.
+    */
   val Target: RenderFormat =
     RenderFormat(
       label = "text",
@@ -43,7 +43,7 @@ object TextRenderer extends Renderer:
       ) ++
         presentation.footer.toVector.map(value => s"Footer: $value") ++
         Seq("", renderSlides(presentation))
-      ).mkString("\n")
+    ).mkString("\n")
 
   private def renderSlides(presentation: Presentation): String =
     presentation.slides.zipWithIndex
@@ -51,9 +51,9 @@ object TextRenderer extends Renderer:
       .mkString("\n\n")
 
   private def renderSlide(
-                           slide: Slide,
-                           number: Int,
-                         ): String =
+    slide: Slide,
+    number: Int,
+  ): String =
     val lines =
       s"[$number] ${slide.title} (${slide.layout})" +:
         slide.elements.flatMap(renderElementLines)
@@ -82,7 +82,7 @@ object TextRenderer extends Renderer:
         Seq(renderImageLine(source, altText))
 
   private def renderImageLine(
-                               source: String,
-                               altText: String,
-                             ): String =
+    source: String,
+    altText: String,
+  ): String =
     s"![$altText]($source)"
