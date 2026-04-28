@@ -1,6 +1,8 @@
 package rendering
 
+import declslides.domain.DomainError
 import declslides.domain.Layout
+import declslides.domain.Presentation
 import declslides.dsl.DSL._
 import declslides.rendering.markdown.MarkdownRenderer
 import org.scalatest.flatspec.AnyFlatSpec
@@ -12,6 +14,27 @@ class MarkdownRendererSpec extends AnyFlatSpec with RendererSpecSupport:
   override protected val renderer: MarkdownRenderer.type = MarkdownRenderer
 
   private val markdownFormat = MarkdownRenderer.Target
+
+  private def expectRight(
+    result: Either[Vector[DomainError], Presentation],
+  ): Presentation =
+    result match
+      case Right(presentation) =>
+        presentation
+      case Left(errors) =>
+        fail(s"Expected Right(Presentation), got Left($errors)")
+
+  private def footeredContent(
+    footer: String,
+  )(slides: PresBuild*,
+  ): String =
+    renderer.render(
+      expectRight(
+        presentation("Demo").withFooter(footer) {
+          deck(slides*)
+        },
+      ),
+    ).content
 
   it should "use the markdown rendering target" in:
     val document = render(
@@ -40,6 +63,15 @@ class MarkdownRendererSpec extends AnyFlatSpec with RendererSpecSupport:
       text("Hello")
 
     content.should(include("_Theme: default_"))
+
+  it should "render the configured footer" in:
+    val content =
+      footeredContent("Company Confidential")(
+        slide("Intro"):
+          text("Hello"),
+      )
+
+    content.should(include("_Footer: Company Confidential_"))
 
   it should "render slide titles as level two headings" in:
     val content = renderedContent(

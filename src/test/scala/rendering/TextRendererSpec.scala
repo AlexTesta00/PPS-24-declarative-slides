@@ -1,5 +1,7 @@
 package rendering
 
+import declslides.domain.DomainError
+import declslides.domain.Presentation
 import declslides.dsl.DSL._
 import declslides.rendering.text.TextRenderer
 import org.scalatest.flatspec.AnyFlatSpec
@@ -11,6 +13,27 @@ class TextRendererSpec extends AnyFlatSpec with RendererSpecSupport:
   override protected val renderer: TextRenderer.type = TextRenderer
 
   private val textFormat = TextRenderer.Target
+
+  private def expectRight(
+    result: Either[Vector[DomainError], Presentation],
+  ): Presentation =
+    result match
+      case Right(presentation) =>
+        presentation
+      case Left(errors) =>
+        fail(s"Expected Right(Presentation), got Left($errors)")
+
+  private def footeredContent(
+    footer: String,
+  )(slides: PresBuild*,
+  ): String =
+    renderer.render(
+      expectRight(
+        presentation("Demo").withFooter(footer) {
+          deck(slides*)
+        },
+      ),
+    ).content
 
   it should "use the text rendering target" in:
     val document = render(
@@ -58,3 +81,12 @@ class TextRendererSpec extends AnyFlatSpec with RendererSpecSupport:
       image("./images/logo.png", "Company logo")
 
     content should include("![Company logo](./images/logo.png)")
+
+  it should "render the configured footer" in:
+    val content =
+      footeredContent("Company Confidential")(
+        slide("Intro"):
+          text("Hello"),
+      )
+
+    content should include("Footer: Company Confidential")

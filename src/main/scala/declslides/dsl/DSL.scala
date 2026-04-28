@@ -27,7 +27,8 @@ object DSL:
   /** Immutable configuration for a presentation before content is evaluated. */
   final case class PresentationConfig(
     title: String,
-    theme: Theme)
+    theme: Theme,
+    footer: Option[String] = None)
 
   /** Mutable-in-spirit state threaded through presentation-level builders.
     *
@@ -37,6 +38,7 @@ object DSL:
   final case class PresentationState(
     title: String,
     theme: Theme = Theme.default,
+    footer: Option[String] = None,
     pendingSlides: Vector[PendingSlide] = Vector.empty):
 
     def appendSlide(slide: PendingSlide): PresentationState =
@@ -62,27 +64,49 @@ object DSL:
     def apply(
       body: => PresBuild,
     ): Either[Vector[DomainError], Presentation] =
-      configured(theme = Theme.default)(body)
+      new ConfiguredPresentation(
+        PresentationConfig(
+          title = title,
+          theme = Theme.default,
+          footer = None
+        ),
+      )(body)
 
     /** Selects the theme to use for the presentation. */
-    infix def use(
-      theme: Theme,
-    ): ConfiguredPresentation =
-      configured(theme)
-
-    private def configured(
+    def use(
       theme: Theme,
     ): ConfiguredPresentation =
       new ConfiguredPresentation(
         PresentationConfig(
           title = title,
           theme = theme,
+          footer = None,
+        ),
+      )
+
+    /** Adds a footer to the presentation. */
+    def withFooter(value: String): ConfiguredPresentation =
+      new ConfiguredPresentation(
+        PresentationConfig(
+          title = title,
+          theme = Theme.default,
+          footer = Some(value),
         ),
       )
 
   /** Presentation builder with all global configuration already chosen. */
   final class ConfiguredPresentation(
     config: PresentationConfig):
+
+    def use(theme: Theme): ConfiguredPresentation =
+      new ConfiguredPresentation(
+        config.copy(theme = theme),
+      )
+
+    def withFooter(value: String): ConfiguredPresentation =
+      new ConfiguredPresentation(
+        config.copy(footer = Some(value)),
+      )
 
     /** Evaluates the body and returns either validation errors or a
       * presentation.
@@ -183,6 +207,7 @@ object DSL:
         Presentation.validateSkeleton(
           title = finalState.title,
           slideTitles = finalState.pendingSlides.map(_.title),
+          footer = finalState.footer,
         )
 
       val allErrors =
@@ -195,6 +220,7 @@ object DSL:
           title = finalState.title,
           slides = validSlides,
           theme = finalState.theme,
+          footer = finalState.footer,
         )
 
     private def initialState(
@@ -203,6 +229,7 @@ object DSL:
       PresentationState(
         title = config.title,
         theme = config.theme,
+        footer = config.footer,
       )
 
   /** Starts a presentation definition.

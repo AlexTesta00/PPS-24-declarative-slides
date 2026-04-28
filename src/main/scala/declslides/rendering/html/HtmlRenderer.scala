@@ -11,13 +11,16 @@ import scalatags.Text.all._
 import scalatags.Text.tags2.section
 
 /** HTML renderer for validated presentations.
-  *
-  * This renderer produces a self-contained HTML document with Tailwind loaded
-  * from a CDN and a slide-oriented layout intended for full-screen navigation.
-  */
+ *
+ * This renderer produces a self-contained HTML document with Tailwind loaded
+ * from a CDN and a slide-oriented layout intended for full-screen navigation.
+ */
 object HtmlRenderer extends Renderer:
 
-  /** HTML rendering target metadata. */
+  /** The target render format for this renderer, specifying the label, file extension,
+   * and accepted input formats. This allows the rendering system to identify when
+   * to use this renderer based on the desired output format.
+   */
   val Target: RenderFormat =
     RenderFormat(
       label = "html",
@@ -86,16 +89,16 @@ object HtmlRenderer extends Renderer:
     )
 
   private def renderSlide(
-    number: Int,
-    slide: Slide,
-    presentation: Presentation,
-  ): Frag =
+                           number: Int,
+                           slide: Slide,
+                           presentation: Presentation,
+                         ): Frag =
     section(
       cls := slideClasses(slide),
       attr("data-slide") := number.toString,
     )(
       div(
-        cls := "mx-auto flex w-full max-w-6xl flex-col gap-8",
+        cls := "mx-auto flex h-full w-full max-w-6xl flex-col gap-8",
       )(
         div(
           cls := "flex items-center justify-between gap-4",
@@ -118,13 +121,14 @@ object HtmlRenderer extends Renderer:
         )(
           slide.elements.map(element => renderElement(element, presentation)),
         ),
+        renderFooter(presentation),
       ),
     )
 
   private def renderElement(
-    element: SlideElement,
-    presentation: Presentation,
-  ): Frag =
+                             element: SlideElement,
+                             presentation: Presentation,
+                           ): Frag =
     element match
       case SlideElement.Paragraph(value) =>
         p(
@@ -155,24 +159,45 @@ object HtmlRenderer extends Renderer:
 
       case SlideElement.Spacer(lines) =>
         div(
-          cls := s"w-full shrink-0",
+          cls := "w-full shrink-0",
           style := s"height: ${lines}rem;",
         )
 
       case SlideElement.Image(source, altText) =>
-        img(
-          src := source,
-          alt := altText,
-          cls := "h-[70vh] w-full rounded-3xl object-cover shadow-2xl",
+        renderImage(source, altText)
+
+  private def renderImage(
+                           source: String,
+                           altText: String,
+                         ): Frag =
+    img(
+      src := source,
+      alt := altText,
+      cls := "h-[70vh] w-full rounded-3xl object-cover shadow-2xl",
+    )
+
+  private def renderFooter(
+                            presentation: Presentation,
+                          ): Frag =
+    presentation.footer match
+      case Some(value) =>
+        footer(
+          cls :=
+            s"mt-auto pt-6 text-center text-sm md:text-base text-[${presentation.theme.foreground}]/80",
+        )(
+          value,
         )
+
+      case None =>
+        frag()
 
   private def bodyClasses(presentation: Presentation): String =
     s"m-0 h-screen overflow-hidden font-sans bg-[${presentation.theme.background}] text-[${presentation.theme.foreground}]"
 
   private def slideClasses(slide: Slide): String =
     s"h-screen min-h-screen w-full snap-start px-8 py-10 md:px-16 md:py-14 lg:px-24 ${
-        layoutClasses(slide.layout)
-      }"
+      layoutClasses(slide.layout)
+    }"
 
   private def contentContainerClasses(layout: Layout): String =
     layout match
@@ -204,16 +229,27 @@ object HtmlRenderer extends Renderer:
           ),
         )
 
+  /** Encodes a raw string as a JavaScript string literal.
+   *
+   * This helper escapes the characters that would otherwise break the generated
+   * inline script, such as quotes, backslashes, and control characters. The
+   * returned value already includes the surrounding double quotes.
+   *
+   * @param value
+   *   raw text to embed into an inline JavaScript snippet
+   * @return
+   *   a safely quoted JavaScript string literal
+   */
   private def toJsStringLiteral(value: String): String =
     val escaped =
       value
         .flatMap {
           case '\\' => "\\\\"
-          case '"' => "\\\""
+          case '"'  => "\\\""
           case '\n' => "\\n"
           case '\r' => "\\r"
           case '\t' => "\\t"
-          case c => c.toString
+          case c    => c.toString
         }
 
     s""""$escaped""""

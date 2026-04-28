@@ -78,6 +78,35 @@ class DslSpec extends AnyFlatSpec with Matchers:
     val deckResult = expectRight(result)
     deckResult.theme shouldBe Theme.conference
 
+  it should "support a footer" in:
+    val result =
+      presentation("Demo").withFooter("Company Confidential") {
+        deck(
+          slide("Intro") {
+            content(text("Hello"))
+          },
+        )
+      }
+
+    val deckResult = expectRight(result)
+    deckResult.footer shouldBe Some("Company Confidential")
+
+  it should "support configuring both theme and footer" in:
+    val result =
+      presentation("Demo")
+        .use(Theme.conference)
+        .withFooter("Company Confidential") {
+          deck(
+            slide("Intro") {
+              content(text("Hello"))
+            },
+          )
+        }
+
+    val deckResult = expectRight(result)
+    deckResult.theme shouldBe Theme.conference
+    deckResult.footer shouldBe Some("Company Confidential")
+
   it should "support bullet lists" in:
     val result =
       presentation("Demo") {
@@ -184,7 +213,7 @@ class DslSpec extends AnyFlatSpec with Matchers:
 
   it should "normalize presentation and slide titles" in:
     val result =
-      presentation("  Demo  ") {
+      presentation("  Demo  ").withFooter("  Footer  ") {
         deck(
           slide("  Intro  ") {
             content(
@@ -196,6 +225,7 @@ class DslSpec extends AnyFlatSpec with Matchers:
 
     val deckResult = expectRight(result)
     deckResult.title shouldBe "Demo"
+    deckResult.footer shouldBe Some("Footer")
     deckResult.slideTitles shouldBe Vector("Intro")
 
   it should "return an error for an empty presentation title" in:
@@ -219,6 +249,19 @@ class DslSpec extends AnyFlatSpec with Matchers:
 
     val errors = expectLeft(result)
     errors should contain(DomainError.PresentationWithoutSlides)
+
+  it should "return an error for a blank footer" in:
+    val result =
+      presentation("Demo").withFooter("   ") {
+        deck(
+          slide("Intro") {
+            content(text("Hello"))
+          },
+        )
+      }
+
+    val errors = expectLeft(result)
+    errors should contain(DomainError.EmptyFooter)
 
   it should "return an error for an empty slide title" in:
     val result =
@@ -456,7 +499,7 @@ class DslSpec extends AnyFlatSpec with Matchers:
   it should
     "accumulate presentation and slide errors instead of failing fast" in:
       val result =
-        presentation("   ") {
+        presentation("   ").withFooter("   ") {
           deck(
             slide(" Intro ") {
               content()
@@ -478,6 +521,7 @@ class DslSpec extends AnyFlatSpec with Matchers:
       val errors = expectLeft(result)
 
       errors should contain(DomainError.EmptyPresentationTitle)
+      errors should contain(DomainError.EmptyFooter)
       errors should contain(DomainError.SlideWithoutElements("Intro"))
       errors should contain(DomainError.DuplicateSlideTitles(Vector("Intro")))
       errors should contain(DomainError.EmptyCodeLanguage)
