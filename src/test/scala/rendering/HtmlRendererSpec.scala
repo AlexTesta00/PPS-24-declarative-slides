@@ -34,6 +34,18 @@ class HtmlRendererSpec extends AnyFlatSpec with RendererSpecSupport:
       ),
     ).content
 
+  private def footeredContent(
+    footer: String,
+    slides: PresBuild*,
+  ): String =
+    renderer.render(
+      expectRight(
+        presentation("Demo").withFooter(footer) {
+          deck(slides*)
+        },
+      ),
+    ).content
+
   it should "use the html rendering target" in:
     val document = render(
       slide("Intro"):
@@ -137,6 +149,17 @@ class HtmlRendererSpec extends AnyFlatSpec with RendererSpecSupport:
         include("""src="./images/logo.png"""") and
         include("""alt="Company logo""""),
     )
+
+  it should "render the configured footer" in:
+    val html =
+      footeredContent(
+        "Company Confidential",
+        slide("Intro"):
+          text("Hello"),
+      )
+
+    html.should(include("Company Confidential"))
+    html.should(include("<footer"))
 
   it should "escape html-sensitive code content" in:
     val html = renderedContent(

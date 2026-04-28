@@ -48,6 +48,9 @@ enum DomainError derives CanEqual:
   /** An image must have non-empty alt text. */
   case EmptyImageAltText
 
+  /** A footer must not be empty. */
+  case EmptyFooter
+
   /** Returns a human-readable explanation of the validation problem. */
   def message: String = this match
     case EmptyPresentationTitle =>
@@ -76,3 +79,5 @@ enum DomainError derives CanEqual:
       "Image source must not be blank"
     case EmptyImageAltText =>
       "Image alt text must not be blank"
+    case EmptyFooter =>
+      "Presentation footer must not be blank"

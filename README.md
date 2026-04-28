@@ -15,20 +15,46 @@ Here is an example of code:
 ```scala
 
 presentation("Hello DeclSlides").use(Theme.default) {
-  deck(
-    slide("Intro", Flow) {
-      content(
-        text("This is the declerative slides tool"),
-        text("Here you can write presentations in a declarative way through a DSL in scala"),
-        text("The DSL supports: "),
-        bullets(
-          "Texts",
-          "Code snippets",
-          "Bullet lists",
-          "Spacing",
-          "Images"
-        )
+ deck(
+  slide("Intro", Flow) {
+   content(
+    text("This is the declerative slides tool"),
+    text("Here you can write presentations in a declarative way through a DSL in scala"),
+    text("The DSL supports: "),
+    bullets(
+     "Texts",
+      "Code snippets",
+      "Bullet lists",
+      "Spacing",
+      "Images"
+   )
+  )
+ },
+}
+                  
+```
+
+And this is an example with footer section:
+
+```scala
+
+presentation("Hello DeclSlides")
+ .use(Theme.default)
+ .withFooter("Footer text") {
+ deck(
+  slide("Intro", Flow) {
+   content(
+    text("This is the declerative slides tool"),
+    text("Here you can write presentations in a declarative way through a DSL in scala"),
+    text("The DSL supports: "),
+    bullets(
+     "Texts",
+     "Code snippets",
+     "Bullet lists",
+     "Spacing",
+     "Images"
       )
+    )
   },
 }
                   

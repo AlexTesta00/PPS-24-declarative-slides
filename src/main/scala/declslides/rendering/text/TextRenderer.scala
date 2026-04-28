@@ -15,7 +15,10 @@ import declslides.rendering.Renderer
   */
 object TextRenderer extends Renderer:
 
-  /** Text rendering target metadata. */
+  /** The target render format for this renderer, specifying the label, file
+    * extension, and accepted input formats. This allows the rendering system to
+    * identify when to use this renderer based on the desired output format.
+    */
   val Target: RenderFormat =
     RenderFormat(
       label = "text",
@@ -26,7 +29,6 @@ object TextRenderer extends Renderer:
   override val target: RenderFormat =
     Target
 
-  /** Renders a presentation in a text document. */
   override def render(presentation: Presentation): Document =
     Document(
       target = target,
@@ -34,11 +36,13 @@ object TextRenderer extends Renderer:
     )
 
   private def renderContent(presentation: Presentation): String =
-    Seq(
-      presentation.title,
-      s"Theme: ${presentation.theme.name}",
-      "",
-      renderSlides(presentation),
+    (
+      Seq(
+        presentation.title,
+        s"Theme: ${presentation.theme.name}",
+      ) ++
+        presentation.footer.toVector.map(value => s"Footer: $value") ++
+        Seq("", renderSlides(presentation))
     ).mkString("\n")
 
   private def renderSlides(presentation: Presentation): String =
@@ -74,5 +78,11 @@ object TextRenderer extends Renderer:
       case SlideElement.Spacer(lines) =>
         List.fill(lines)("")
 
-      case SlideElement.Image(url, alt) =>
-        Seq(s"![$alt]($url)")
+      case SlideElement.Image(source, altText) =>
+        Seq(renderImageLine(source, altText))
+
+  private def renderImageLine(
+    source: String,
+    altText: String,
+  ): String =
+    s"![$altText]($source)"

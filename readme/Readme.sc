@@ -22,24 +22,49 @@ presentation("Declerative-Slides").use(Theme.default) {
         code(
           "scala",
           """
-            |presentation("Hello DeclSlides").use(Theme.default) {
-            |  deck(
-            |    slide("Intro", Flow) {
-            |      content(
-            |        text("This is the declerative slides tool"),
-            |        text("Here you can write presentations in a declarative way through a DSL in scala"),
-            |        text("The DSL supports: "),
-            |        bullets(
-            |          "Texts",
-            |          "Code snippets",
-            |          "Bullet lists",
-            |          "Spacing",
-            |          "Images"
-            |          )
-            |       )
-            |   },
-            |}
-            |"""
+            presentation("Hello DeclSlides").use(Theme.default) {
+              deck(
+                slide("Intro", Flow) {
+                  content(
+                    text("This is the declerative slides tool"),
+                    text("Here you can write presentations in a declarative way through a DSL in scala"),
+                    text("The DSL supports: "),
+                    bullets(
+                      "Texts",
+                      "Code snippets",
+                      "Bullet lists",
+                      "Spacing",
+                      "Images"
+                      )
+                   )
+               },
+            }
+            """
+        ),
+        text("And this is an example with footer section:"),
+        code(
+          "scala",
+          """
+            presentation("Hello DeclSlides")
+              .use(Theme.default)
+              .withFooter("Footer text") {
+              deck(
+                slide("Intro", Flow) {
+                  content(
+                    text("This is the declerative slides tool"),
+                    text("Here you can write presentations in a declarative way through a DSL in scala"),
+                    text("The DSL supports: "),
+                    bullets(
+                      "Texts",
+                      "Code snippets",
+                      "Bullet lists",
+                      "Spacing",
+                      "Images"
+                      )
+                   )
+               },
+            }
+            """
         )
       )
     },

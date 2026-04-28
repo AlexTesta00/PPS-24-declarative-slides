@@ -15,7 +15,8 @@ package declslides.domain
 final case class Presentation private (
   title: String,
   slides: Vector[Slide],
-  theme: Theme):
+  theme: Theme,
+  footer: Option[String]):
 
   /** Returns the titles of all slides in declaration order. */
   def slideTitles: Vector[String] =
@@ -33,19 +34,24 @@ object Presentation:
     title: String,
     slides: Vector[Slide],
     theme: Theme = Theme.default,
+    footer: Option[String] = None,
   ): Either[Vector[DomainError], Presentation] =
     val normalizedTitle =
       title.trim
+
+    val normalizedFooter =
+      footer.map(_.trim)
 
     val errors =
       validateSkeleton(
         title = normalizedTitle,
         slideTitles = slides.map(_.title),
+        footer = normalizedFooter,
       )
 
     Either.cond(
       errors.isEmpty,
-      new Presentation(normalizedTitle, slides, theme),
+      new Presentation(normalizedTitle, slides, theme, normalizedFooter),
       errors,
     )
 
@@ -57,9 +63,13 @@ object Presentation:
   def validateSkeleton(
     title: String,
     slideTitles: Vector[String],
+    footer: Option[String] = None,
   ): Vector[DomainError] =
     val normalizedTitle =
       title.trim
+
+    val normalizedFooter =
+      footer.map(_.trim)
 
     val duplicates =
       slideTitles
@@ -78,6 +88,9 @@ object Presentation:
     ).toVector ++
       Option.when(slideTitles.isEmpty)(
         DomainError.PresentationWithoutSlides,
+      ).toVector ++
+      Option.when(normalizedFooter.exists(_.isEmpty))(
+        DomainError.EmptyFooter,
       ).toVector ++
       Option.when(duplicates.nonEmpty)(
         DomainError.DuplicateSlideTitles(duplicates),

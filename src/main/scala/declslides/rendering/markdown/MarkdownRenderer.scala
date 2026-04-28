@@ -15,7 +15,10 @@ import declslides.rendering.Renderer
   */
 object MarkdownRenderer extends Renderer:
 
-  /** Markdown rendering target metadata. */
+  /** The target render format for this renderer, specifying the label, file
+    * extension, and accepted input formats. This allows the rendering system to
+    * identify when to use this renderer based on the desired output format.
+    */
   val Target: RenderFormat =
     RenderFormat(
       label = "markdown",
@@ -33,10 +36,13 @@ object MarkdownRenderer extends Renderer:
     )
 
   private def renderContent(presentation: Presentation): String =
-    Seq(
-      s"# ${presentation.title}",
-      s"_Theme: ${presentation.theme.name}_",
-      renderSlides(presentation),
+    (
+      Vector(
+        s"# ${presentation.title}",
+        s"_Theme: ${presentation.theme.name}_",
+      ) ++
+        presentation.footer.toVector.map(value => s"_Footer: ${value}_") ++
+        Vector(renderSlides(presentation))
     ).mkString("\n\n")
 
   private def renderSlides(presentation: Presentation): String =

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeclSlides — Declarative slides for Scala</title>
+    <meta
+      name="description"
+      content="DeclSlides is a declarative Scala DSL for authoring presentations and rendering them to HTML, text, and Markdown."
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-paper: #f6f4ef;
+        --color-ink: #0c0c0f;
+        --color-muted: #6e6e73;
+        --color-line: #d8d7d2;
+        --color-accent: #ff5a7a;
+        --color-panel: #111114;
+        --color-panel-soft: #17171b;
+      }
+
+      @utility text-balance {
+        text-wrap: balance;
+      }
+    </style>
+  </head>
+  <body class="bg-paper text-ink antialiased selection:bg-accent/20">
+    <div class="min-h-screen">
+      <header class="sticky top-0 z-50 border-b border-black/5 bg-paper/80 backdrop-blur">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
+          <a href="#top" class="flex items-center gap-3 text-sm font-semibold tracking-[0.18em] uppercase">
+            <span class="inline-block h-2.5 w-2.5 rounded-full bg-accent"></span>
+            DeclSlides
+          </a>
+
+          <nav class="hidden items-center gap-8 text-xs uppercase tracking-[0.18em] text-muted md:flex">
+            <a href="#overview" class="transition hover:text-ink">Overview</a>
+            <a href="#dsl" class="transition hover:text-ink">DSL</a>
+            <a href="#jar" class="transition hover:text-ink">Jar usage</a>
+          </nav>
+
+          <a
+            href="https://github.com/alextesta/declerative-slides"
+            class="rounded-full border border-black/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] transition hover:border-black hover:bg-black hover:text-white"
+          >
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      <main id="top">
+        <section id="overview" class="border-b border-black/5">
+          <div class="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl grid-cols-1 px-6 md:px-10 lg:grid-cols-12">
+            <div class="relative flex items-end border-r-0 border-black/5 py-16 lg:col-span-7 lg:border-r lg:py-24">
+              <div class="w-full">
+                <div class="mb-16 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">
+                  <span class="inline-block h-px w-10 bg-black/20"></span>
+                  Declarative slide authoring for Scala
+                </div>
+
+                <h1 class="max-w-4xl text-balance text-5xl font-light leading-[0.95] tracking-[-0.04em] md:text-7xl xl:text-[6.75rem]">
+                  Build polished presentations with a small, readable Scala DSL.
+                </h1>
+
+                <p class="mt-8 max-w-2xl text-lg leading-8 text-muted md:text-xl">
+                  DeclSlides lets you describe decks in plain Scala, keep them close to your code,
+                  and render them to HTML, text, or Markdown with a lightweight jar-based workflow.
+                </p>
+
+                <div class="mt-12 flex flex-wrap gap-4">
+                  <a
+                    href="#dsl"
+                    class="rounded-full bg-ink px-6 py-3 text-sm font-medium uppercase tracking-[0.18em] text-white transition hover:opacity-90"
+                  >
+                    Explore the DSL
+                  </a>
+                  <a
+                    href="#jar"
+                    class="rounded-full border border-black/10 px-6 py-3 text-sm font-medium uppercase tracking-[0.18em] transition hover:border-black"
+                  >
+                    Compile with the jar
+                  </a>
+                </div>
+              </div>
+
+              <div class="pointer-events-none absolute inset-x-0 bottom-0 hidden h-72 items-end gap-6 lg:flex">
+                <div class="h-24 w-24 border border-line"></div>
+                <div class="h-40 w-32 border border-line"></div>
+                <div class="h-56 w-44 border border-line"></div>
+                <div class="h-72 w-56 border border-line"></div>
+                <div class="h-48 w-40 border border-line"></div>
+              </div>
+            </div>
+
+            <div class="flex items-end py-16 lg:col-span-5 lg:py-24">
+              <div class="w-full space-y-8">
+                <div class="rounded-[2rem] border border-black/10 bg-white p-8 shadow-sm">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">What it solves</p>
+                  <p class="mt-4 text-2xl font-light leading-tight tracking-[-0.03em]">
+                    Slides that live in version control and feel native to a Scala codebase.
+                  </p>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                  <div class="rounded-[2rem] border border-black/10 bg-white p-6">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Formats</p>
+                    <p class="mt-3 text-2xl font-light tracking-[-0.03em]">HTML / Text / Markdown</p>
+                  </div>
+                  <div class="rounded-[2rem] border border-black/10 bg-white p-6">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Runtime</p>
+                    <p class="mt-3 text-2xl font-light tracking-[-0.03em]">Single jar workflow</p>
+                  </div>
+                </div>
+
+                <p class="max-w-xl text-sm leading-7 text-muted">
+                  The visual direction of this landing page takes inspiration from the minimal,
+                  editorial layout in your reference: large typography, soft geometric framing,
+                  and a sharp light/dark contrast between sections.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-panel text-white">
+          <div class="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+            <div class="max-w-3xl">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">Why teams like it</p>
+              <h2 class="mt-6 text-balance text-4xl font-light leading-tight tracking-[-0.04em] md:text-6xl">
+                Author slides the same way you shape the rest of your system: clearly, compositionally, and with source control in mind.
+              </h2>
+            </div>
+
+            <div class="mt-16 grid gap-6 lg:grid-cols-3">
+              <article class="rounded-[2rem] border border-white/10 bg-panel-soft p-8">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">Readable by default</p>
+                <h3 class="mt-8 text-2xl font-light tracking-[-0.03em]">A tiny DSL with obvious building blocks.</h3>
+                <p class="mt-4 leading-7 text-white/70">
+                  Presentation, slide, content, text, bullets, code, image, spacer, footer. The surface stays small and easy to teach.
+                </p>
+              </article>
+
+              <article class="rounded-[2rem] border border-white/10 bg-panel-soft p-8">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">Practical outputs</p>
+                <h3 class="mt-8 text-2xl font-light tracking-[-0.03em]">Generate the format you need for the moment.</h3>
+                <p class="mt-4 leading-7 text-white/70">
+                  HTML for presentation mode, text for quick previews, Markdown for docs or handoff. One source, multiple outputs.
+                </p>
+              </article>
+
+              <article class="rounded-[2rem] border border-white/10 bg-panel-soft p-8">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">Fits release workflows</p>
+                <h3 class="mt-8 text-2xl font-light tracking-[-0.03em]">Ship the jar, then render decks anywhere.</h3>
+                <p class="mt-4 leading-7 text-white/70">
+                  Download the release artifact, point it to a <code class="rounded bg-white/10 px-2 py-1 text-white">.sc</code> file, and generate presentation output without installing a full frontend toolchain.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="dsl" class="border-b border-black/5">
+          <div class="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+            <div class="grid gap-16 lg:grid-cols-12">
+              <div class="lg:col-span-4">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">The DSL</p>
+                <h2 class="mt-6 text-balance text-4xl font-light leading-tight tracking-[-0.04em] md:text-6xl">
+                  Write decks in plain Scala, without losing structure.
+                </h2>
+                <p class="mt-6 max-w-md leading-8 text-muted">
+                  The goal is not to invent a clever syntax. The goal is to make presentation code feel boring in the best possible way: explicit, composable, and easy to scan.
+                </p>
+              </div>
+
+              <div class="lg:col-span-8">
+                <div class="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-sm">
+                  <div class="flex items-center justify-between border-b border-black/5 px-6 py-4">
+                    <span class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Example deck</span>
+                    <span class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Scala</span>
+                  </div>
+                  <pre class="overflow-x-auto p-6 text-sm leading-7 text-ink md:p-8"><code>import declslides.dsl.DSL.*
+import declslides.domain.*
+
+presentation("Hello DeclSlides")
+  .use(Theme.conference)
+  .withFooter("DeclSlides · internal demo") {
+    deck(
+      slide("Intro") {
+        content(
+          text("This presentation is authored in Scala."),
+          bullets(
+            "Readable DSL",
+            "Static validation",
+            "Multiple output formats"
+          )
+        )
+      },
+      slide("Media", Layout.Centered) {
+        content(
+          image("./images/network.jpg", "Network visualization"),
+          text("Images, layout hints, and footers are all first-class.")
+        )
+      },
+      slide("Code") {
+        content(
+          code(
+            "scala",
+            """val speed = optimize(network)"""
+          )
+        )
+      }
+    )
+  }</code></pre>
+                </div>
+
+                <div class="mt-8 grid gap-6 md:grid-cols-3">
+                  <div class="rounded-[2rem] border border-black/10 bg-white p-6">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Composition</p>
+                    <p class="mt-3 text-sm leading-7 text-muted">
+                      Decks are assembled with small builders instead of hidden magic.
+                    </p>
+                  </div>
+                  <div class="rounded-[2rem] border border-black/10 bg-white p-6">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Validation</p>
+                    <p class="mt-3 text-sm leading-7 text-muted">
+                      Empty titles, invalid blocks, and duplicate slide names are caught early.
+                    </p>
+                  </div>
+                  <div class="rounded-[2rem] border border-black/10 bg-white p-6">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Outputs</p>
+                    <p class="mt-3 text-sm leading-7 text-muted">
+                      Render the same source to HTML, text, or Markdown depending on the use case.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="jar" class="bg-white">
+          <div class="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+            <div class="grid gap-12 lg:grid-cols-12">
+              <div class="lg:col-span-5">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Run it with the jar</p>
+                <h2 class="mt-6 text-balance text-4xl font-light leading-tight tracking-[-0.04em] md:text-6xl">
+                  Download the release, then render directly from the CLI.
+                </h2>
+                <ol class="mt-8 space-y-6 text-sm leading-7 text-muted">
+                  <li><span class="mr-3 font-semibold text-ink">01</span>Download <code class="rounded bg-black/5 px-2 py-1 text-ink">declslides.jar</code> from GitHub Releases.</li>
+                  <li><span class="mr-3 font-semibold text-ink">02</span>Create a deck in a <code class="rounded bg-black/5 px-2 py-1 text-ink">.sc</code> file.</li>
+                  <li><span class="mr-3 font-semibold text-ink">03</span>Render to the format you need with one command.</li>
+                </ol>
+              </div>
+
+              <div class="lg:col-span-7">
+                <div class="overflow-hidden rounded-[2rem] border border-black/10 bg-ink text-white shadow-sm">
+                  <div class="flex items-center justify-between border-b border-white/10 px-6 py-4">
+                    <span class="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">Terminal</span>
+                    <span class="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">Jar-based workflow</span>
+                  </div>
+                  <pre class="overflow-x-auto p-6 text-sm leading-7 md:p-8"><code># Render HTML
+java -jar declslides.jar   --input examples/hello.sc   --format html   --output dist/hello.html
+
+# Render plain text
+java -jar declslides.jar   --input examples/hello.sc   --format text   --output dist/hello.txt
+
+# Render Markdown
+java -jar declslides.jar   --input examples/hello.sc   --format markdown   --output dist/hello.md</code></pre>
+                </div>
+
+                <div class="mt-8 overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-sm">
+                  <div class="flex items-center justify-between border-b border-black/5 px-6 py-4">
+                    <span class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">Minimal file</span>
+                    <span class="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted">hello.sc</span>
+                  </div>
+                  <pre class="overflow-x-auto p-6 text-sm leading-7 text-ink md:p-8"><code>import declslides.dsl.DSL.*
+import declslides.domain.*
+
+presentation("Release demo") {
+  deck(
+    slide("First slide") {
+      content(
+        text("Generated from a jar."),
+        bullets("Simple", "Portable", "Versioned")
+      )
+    }
+  )
+}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="border-t border-black/5 bg-paper">
+        <div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-10">
+          <p>DeclSlides — DSL for presentations in Scala 3.</p>
+          <p>
+            Develop by Alex Testa
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
