@@ -1,0 +1,49 @@
+site_name: Declerative Slides Docs
+site_url: https://alextesta00.github.io/declarative-slides/docs
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - toc.integrate
+    - content.code.annotate
+    - content.code.copy
+    - content.code.expand
+    - content.code.focus
+    - content.code.inherit
+    - content.tabs.link
+    - content.tabs.sticky
+    - content.tooltips
+    - content.toc.sticky
+    - content.toc.follow
+    - content.toc.highlight
+    - content.toc.deep
+    - content.toc.indent
+    - content.toc.collapse
+    - content.toc.expand
+    - content.toc.sections
+    - content.toc.smooth_scroll
+    - content.toc.scrollspy
+    - content.toc.scrollspy_offset
+
+nav:
+  - Introduzione: index.md
+  - Dominio: domain.md
+  - Obiettivi: goals.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
