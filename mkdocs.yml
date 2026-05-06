@@ -34,6 +34,8 @@ nav:
   - Introduzione: index.md
   - Dominio: domain.md
   - Obiettivi: goals.md
+  - Processo di sviluppo: development_process.md
+  - Stack tecnologico: tech_stack.md
 
 markdown_extensions:
   - admonition
