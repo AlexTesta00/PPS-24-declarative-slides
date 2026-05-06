@@ -36,6 +36,7 @@ nav:
   - Obiettivi: goals.md
   - Processo di sviluppo: development_process.md
   - Stack tecnologico: tech_stack.md
+  - Architettura Generale: general_architecture.md
 
 markdown_extensions:
   - admonition
