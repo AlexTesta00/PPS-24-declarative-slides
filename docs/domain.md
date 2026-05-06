@@ -28,14 +28,14 @@ Le regole principali del dominio riflettono vincoli concreti e comprensibili: il
 Questa attenzione ai vincoli è centrale, perché sposta il controllo di correttezza dal momento finale del rendering alla costruzione stessa del modello. In altre parole, il sistema non tratta l’errore come un evento eccezionale da nascondere, ma come una parte normale del processo di authoring che va rappresentata in modo esplicito.
 
 ## Tabella concettuale del dominio
-| Entità           | Ruolo                                                                                     | Responsabilità principale
-|------------------|------------------------------------------------------------------------------------------|---------------------------------------------|
-| **Presentation** | radice del modello | definisce titolo, tema, footer e insieme di slide
-| **Slide**        | unità di contenuto | definisce titolo, layout e contenuti
-| **SlideElement** | componente di slide | rappresenta testo, liste, codice, immagini e spaziatori
-| **Theme**        | configurazione visuale | definisce palette cromatica e identità visiva
-| **Layout**       | disposizione | suggerisce la disposizione dei contenuti
-| **DomainError**  | validazione | descrive errori strutturali e semantici del modello
+| **Entità**| **Ruolo**| **Responsabilità principale**
+|------------------|------------------------||
+| **Presentation** | radice del modello| definisce titolo, tema, footer e insieme di slide
+| **Slide**| unità di contenuto| definisce titolo, layout e contenuti
+| **SlideElement** | componente di slide| rappresenta testo, liste, codice, immagini e spaziatori
+| **Theme**| configurazione visuale | definisce palette cromatica e identità visiva
+| **Layout**| disposizione| suggerisce la disposizione dei contenuti
+| **DomainError**| validazione| descrive errori strutturali e semantici del modello
 
 ## Diagramma del dominio
 ```mermaid
