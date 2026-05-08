@@ -1,5 +1,6 @@
 site_name: Declerative Slides Docs
 site_url: https://alextesta00.github.io/declarative-slides/docs
+use_directory_urls: true
 theme:
   name: material
   features:
