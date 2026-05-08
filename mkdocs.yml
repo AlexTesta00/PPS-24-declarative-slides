@@ -38,6 +38,9 @@ nav:
   - Stack tecnologico: tech_stack.md
   - Architettura Generale: general_architecture.md
   - Design di dettaglio: detailed_design.md
+  - Sviluppo iterativo e sprint: development_and_sprint.md
+  - Problemi Incontrati: problem_solution.md
+  - Conclusioni: conclusions.md
 
 markdown_extensions:
   - admonition
