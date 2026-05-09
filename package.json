@@ -2,13 +2,13 @@
   "name": "declerative-slides",
   "version": "0.0.1",
   "description": "",
-  "homepage": "https://github.com/AlexTesta00/declarative-slides#readme",
+  "homepage": "https://github.com/AlexTesta00/PPS-24-declarative-slides#readme",
   "bugs": {
-    "url": "https://github.com/AlexTesta00/declarative-slides/issues"
+    "url": "https://github.com/AlexTesta00/PPS-24-declarative-slides/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexTesta00/declarative-slides.git"
+    "url": "https://github.com/AlexTesta00/PPS-24-declarative-slides.git"
   },
   "license": "MIT",
   "author": "Alex Testa",
