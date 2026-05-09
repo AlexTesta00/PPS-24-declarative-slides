@@ -1,3 +1,11 @@
+## 1.0.0 (2026-05-09)
+
+* feat: promote release to 1.0.0 ([2f4758e](https://github.com/AlexTesta00/PPS-24-declarative-slides/commit/2f4758e))
+
+### BREAKING CHANGE
+
+* declare the first stable public release.
+
 ## <small>0.5.1 (2026-05-09)</small>
 
 * feat!: promote release to 1.0.0 ([e9a8a6e](https://github.com/AlexTesta00/PPS-24-declarative-slides/commit/e9a8a6e))
