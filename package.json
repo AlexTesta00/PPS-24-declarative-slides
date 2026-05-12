@@ -88,6 +88,11 @@
               "path": "target/scala-*/declslides.jar",
               "name": "declslides-${nextRelease.version}.jar",
               "label": "DeclSlides CLI JAR"
+            },
+            {
+              "path": "site/docs/pdf/docs.pdf",
+              "name": "declslides-docs-${nextRelease.version}.pdf",
+              "label": "Documentation PDF"
             }
           ]
         }
