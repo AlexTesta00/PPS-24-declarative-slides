@@ -1,5 +1,5 @@
 site_name: Declerative Slides Docs
-site_url: https://alextesta00.github.io/declarative-slides/docs
+site_url: https://github.com/AlexTesta00/PPS-24-declarative-slides/docs/
 use_directory_urls: true
 theme:
   name: material
@@ -42,6 +42,16 @@ nav:
   - Sviluppo iterativo e sprint: development_and_sprint.md
   - Problemi Incontrati: problem_solution.md
   - Conclusioni: conclusions.md
+
+plugins:
+  - search
+  - to-pdf:
+      enabled_if_env: ENABLE_PDF_EXPORT
+      output_path: pdf/docs.pdf
+      cover_title: "PPS24-Declerative Slides"
+      cover_subtitle: "Alex Testa"
+      toc_title: "Indice"
+      toc_level: 3
 
 markdown_extensions:
   - admonition
