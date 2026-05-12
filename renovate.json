@@ -4,8 +4,10 @@
   "baseBranchPatterns": ["develop"],
   "labels": ["dependencies"],
   "timezone": "Europe/Rome",
-  "schedule": ["* 0-3 * * *"],
-  "prHourlyLimit": 2,
+  "schedule": ["at any time"],
+  "prHourlyLimit": 0,
+  "prCreation": "immediate",
+  "dependencyDashboardApproval": false,
   "automerge": false,
   "packageRules": [
     {
