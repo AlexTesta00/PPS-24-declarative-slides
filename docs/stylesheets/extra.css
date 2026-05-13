@@ -27,16 +27,16 @@
         white-space: normal !important;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        hyphens: auto;
         padding: 3px 5px;
         vertical-align: top;
     }
 
     .md-typeset table:not([class]) tr {
-        break-inside: avoid;
         page-break-inside: avoid;
     }
 
-    .md-typeset img[id^="mermaid-diagram"] {
+    .md-typeset img[alt="Mermaid Diagram"] {
         max-width: 100% !important;
         height: auto !important;
         display: block;

@@ -60,6 +60,7 @@ plugins:
           htmlLabels: false
         class:
           htmlLabels: false
+
   - to-pdf:
       enabled_if_env: ENABLE_PDF_EXPORT
       output_path: pdf/docs.pdf
@@ -69,7 +70,6 @@ plugins:
       author: "Alex Testa"
       toc_title: "Indice"
       toc_level: 3
-      verbose: true
 
 markdown_extensions:
   - admonition

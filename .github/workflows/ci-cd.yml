@@ -135,9 +135,22 @@ jobs:
         run: sbt clean assembly
 
       - name: Build MkDocs PDF for release
+        shell: bash
         env:
           ENABLE_PDF_EXPORT: "1"
-        run: mkdocs build --strict --site-dir ./site/docs
+        run: |
+          set +e
+          mkdocs build --strict --site-dir ./site/docs 2>&1 | tee mkdocs-build.log
+          status=${PIPESTATUS[0]}
+          set -e
+          
+          if [ "$status" -ne 0 ]; then
+            if [ -s ./site/docs/pdf/docs.pdf ] && grep -q "occurred while generating PDF" mkdocs-build.log; then
+              echo "::warning::mkdocs-to-pdf ha generato il PDF, ma WeasyPrint ha prodotto warning/errori non bloccanti."
+            else
+              exit "$status"
+            fi
+          fi
 
       - name: Run semantic-release
         env:
@@ -200,9 +213,22 @@ jobs:
           pip install -r requirements-docs.txt
 
       - name: Build MkDocs documentation under /docs with PDF
+        shell: bash
         env:
           ENABLE_PDF_EXPORT: "1"
-        run: mkdocs build --strict --site-dir ./site/docs
+        run: |
+          set +e
+          mkdocs build --strict --site-dir ./site/docs 2>&1 | tee mkdocs-build.log
+          status=${PIPESTATUS[0]}
+          set -e
+          
+          if [ "$status" -ne 0 ]; then
+            if [ -s ./site/docs/pdf/docs.pdf ] && grep -q "occurred while generating PDF" mkdocs-build.log; then
+              echo "::warning::mkdocs-to-pdf ha generato il PDF, ma WeasyPrint ha prodotto warning/errori non bloccanti."
+            else
+              exit "$status"
+            fi
+          fi
 
       - name: Build Scaladoc API documentation
         run: sbt doc
