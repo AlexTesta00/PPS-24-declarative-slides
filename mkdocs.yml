@@ -1,8 +1,6 @@
-site_name: Declarative Slides Docs
-site_url: https://alextesta00.github.io/PPS-24-declarative-slides/docs/
-site_author: Alex Testa
+site_name: Declerative Slides Docs
+site_url: https://github.com/AlexTesta00/PPS-24-declarative-slides/docs/
 use_directory_urls: true
-
 theme:
   name: material
   features:
@@ -33,9 +31,6 @@ theme:
     - content.toc.scrollspy
     - content.toc.scrollspy_offset
 
-extra_css:
-  - stylesheets/extra.css
-
 nav:
   - Introduzione: index.md
   - Dominio: domain.md
@@ -53,18 +48,14 @@ plugins:
   - to-pdf:
       enabled_if_env: ENABLE_PDF_EXPORT
       output_path: pdf/docs.pdf
-      cover: true
-      cover_title: "PPS24 - Declarative Slides"
-      cover_subtitle: "Documentazione tecnica del progetto"
-      author: "Alex Testa"
+      cover_title: "PPS24-Declerative Slides"
+      cover_subtitle: "Alex Testa"
       toc_title: "Indice"
       toc_level: 3
-      verbose: true
 
 markdown_extensions:
   - admonition
   - tables
-  - attr_list
   - toc:
       permalink: true
   - pymdownx.details
