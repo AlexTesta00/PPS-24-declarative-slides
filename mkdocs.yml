@@ -50,17 +50,6 @@ nav:
 
 plugins:
   - search
-  - mermaid-to-svg:
-      enabled_if_env: ENABLE_PDF_EXPORT
-      image_id_enabled: true
-      image_id_prefix: mermaid-diagram
-      mermaid_config:
-        htmlLabels: false
-        flowchart:
-          htmlLabels: false
-        class:
-          htmlLabels: false
-
   - to-pdf:
       enabled_if_env: ENABLE_PDF_EXPORT
       output_path: pdf/docs.pdf
