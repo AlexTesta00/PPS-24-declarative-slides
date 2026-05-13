@@ -60,6 +60,7 @@ plugins:
           htmlLabels: false
         class:
           htmlLabels: false
+
   - to-pdf:
       enabled_if_env: ENABLE_PDF_EXPORT
       output_path: pdf/docs.pdf
