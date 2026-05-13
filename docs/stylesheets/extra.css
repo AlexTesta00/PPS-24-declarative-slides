@@ -25,9 +25,8 @@
     .md-typeset table:not([class]) th,
     .md-typeset table:not([class]) td {
         white-space: normal !important;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-        hyphens: auto;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
         padding: 3px 5px;
         vertical-align: top;
     }
@@ -47,6 +46,7 @@
     pre,
     code {
         white-space: pre-wrap !important;
-        overflow-wrap: anywhere;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }

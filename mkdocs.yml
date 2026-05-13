@@ -69,6 +69,7 @@ plugins:
       author: "Alex Testa"
       toc_title: "Indice"
       toc_level: 3
+      verbose: true
 
 markdown_extensions:
   - admonition
