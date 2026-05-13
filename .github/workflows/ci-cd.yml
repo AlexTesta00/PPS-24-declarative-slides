@@ -104,6 +104,11 @@ jobs:
           node-version: '25.9.0'
           check-latest: 'false'
 
+      - name: Install Mermaid CLI dependencies
+        run: |
+          npm install -g @mermaid-js/mermaid-cli puppeteer
+          npx puppeteer browsers install chrome-headless-shell
+
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
@@ -169,6 +174,12 @@ jobs:
         with:
           python-version: '3.14.5'
 
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '25.9.0'
+          check-latest: 'false'
+
       - name: Install WeasyPrint system dependencies
         run: |
           sudo apt-get update
@@ -177,6 +188,11 @@ jobs:
             libharfbuzz0b \
             libpangoft2-1.0-0 \
             libharfbuzz-subset0
+
+      - name: Install Mermaid CLI dependencies
+        run: |
+          npm install -g @mermaid-js/mermaid-cli puppeteer
+          npx puppeteer browsers install chrome-headless-shell
 
       - name: Install MkDocs dependencies
         run: |
