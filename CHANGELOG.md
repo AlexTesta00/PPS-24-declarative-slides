@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/AlexTesta00/PPS-24-declarative-slides/compare/v1.0.0...v1.0.1) (2026-05-18)
+
+### Bug Fixes
+
+* **DeclSlidesRuntime.scala:** rename organization path ([b46b8b9](https://github.com/AlexTesta00/PPS-24-declarative-slides/commit/b46b8b99f727816deae52f9e06ae129e9bf720af))
+* **SlideElement.scala:** fix validete in validate ([298a3af](https://github.com/AlexTesta00/PPS-24-declarative-slides/commit/298a3af6a5d10b608a27f654f354fdcc50c72a7c))
+
 ## 1.0.0 (2026-05-09)
 
 * feat: promote release to 1.0.0 ([2f4758e](https://github.com/AlexTesta00/PPS-24-declarative-slides/commit/2f4758e))
