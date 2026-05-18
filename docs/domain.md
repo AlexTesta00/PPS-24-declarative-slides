@@ -13,6 +13,16 @@ In un contesto reale, questi due ruoli possono anche essere ricoperti dalla stes
 
 Questa separazione rende il sistema più flessibile e manutenibile: lo stesso script sorgente può infatti essere trasformato in formati differenti senza modificare la definizione originale della presentazione.
 
+## Scelte di dominio
+
+In DeclSlides ho scelto di non far costruire direttamente al DSL una presentazione “sempre valida”. 
+
+Il DSL accumula una descrizione intermedia, mentre la validazione vera rimane nel dominio. 
+
+Questa separazione mi ha permesso di mantenere semplice la sintassi utente e, allo stesso tempo, di concentrare le regole in `Presentation`, `Slide` e `SlideElement`. 
+
+Il compromesso è che alcuni errori, come una slide vuota o un titolo duplicato, vengono scoperti alla fine della costruzione e non direttamente dal compilatore Scala.
+
 ## Entità del dominio
 
 - **Presentation** -> rappresenta l’intera presentazione, con il titolo, il tema, il footer e l’insieme delle slide;

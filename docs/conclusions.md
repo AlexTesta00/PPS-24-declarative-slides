@@ -42,6 +42,13 @@ Gli sviluppi futuri del progetto possono essere articolati in più direzioni.
 - miglioramento del bootstrap e del runtime;
 - eventuale passaggio a un modello asset più strutturato per HTML.
 
+## Limiti noti
+Il renderer HTML è il formato più curato, mentre Markdown e testo semplice sono pensati soprattutto come output di ispezione. 
+
+In particolare, alcune informazioni visuali, come il layout centrato, non hanno ancora una rappresentazione forte in Markdown. 
+
+Una possibile evoluzione sarebbe introdurre metadata espliciti nel Markdown o distinguere tra renderer “di presentazione” e renderer “di documentazione”.
+
 # Conclusione
 DeclSlides rappresenta un progetto software di dimensione contenuta ma di forte densità ingegneristica. Il problema affrontato, descrivere e generare presentazioni in modo dichiarativo, validato e multi-formato, è stato risolto con una soluzione coerente, tecnicamente solida e progressivamente estesa senza compromettere la struttura del sistema.
 

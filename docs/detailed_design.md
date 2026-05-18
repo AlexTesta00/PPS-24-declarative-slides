@@ -268,7 +268,13 @@ Il `RendererRegistry` separa la conoscenza dei renderer disponibili dal loro uti
 Per il renderer HTML si è scelto di usare ScalaTags, evitando un sistema di template esterno. Questo rende il rendering più vicino alla struttura del dominio e mantiene tutto nel linguaggio principale del progetto.
 
 ### CLI come layer sottile
-La CLI non conosce i dettagli del dominio né del rendering, ma si limita a orchestrare parsing, wiring e messaggi. Questo la rende molto più semplice da testare e modificare.
+La CLI non interpreta direttamente il file `.sc`: genera un piccolo bootstrap e lo esegue tramite Scala CLI. 
+
+Questa soluzione ha ridotto la complessità interna del progetto, perché evita di implementare un parser o un compilatore custom. 
+
+Il costo è una dipendenza operativa in più: l’utente deve avere Scala CLI disponibile e la variabile `DECLSLIDES_SCALA_CLI` configurata correttamente. 
+
+Per questo motivo considero la CLI funzionante, ma non ancora ideale dal punto di vista della distribuzione.
 
 ## Pattern e principi di buona programmazione
 ### Separazione delle responsabilità (Single Responsibility Principle)
