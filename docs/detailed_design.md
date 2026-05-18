@@ -191,7 +191,7 @@ Il sistema valida la presentazione durante la costruzione del modello di dominio
 
 Il progetto include un sito statico in inglese che presenta il DSL, mostra esempi di utilizzo, spiega il flusso di compilazione e viene pubblicato automaticamente tramite GitHub Actions.
 
-[Sito di presentazione del DSL](https://alextesta00.github.io/declarative-slides/)
+[Sito di presentazione del DSL](https://alextesta00.github.io/PPS-24-declarative-slides/)
 
 **Componenti coinvolti**
 
