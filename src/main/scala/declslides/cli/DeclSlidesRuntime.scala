@@ -6,7 +6,7 @@ object DeclSlidesRuntime:
     "DECLSLIDES_SCALA_CLI"
 
   val coreDependency: String =
-    "com.alextesta::declerative-slides:0.1.0-SNAPSHOT"
+    "io.github.alextesta::declerative-slides:0.1.0-SNAPSHOT"
 
   val scalaVersion: Option[String] =
     Some("3.8.3")

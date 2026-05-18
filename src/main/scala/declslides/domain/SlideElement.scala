@@ -53,9 +53,9 @@ object SlideElement:
       Option.when(lines <= 0)(DomainError.NonPositiveSpacer(lines)).toVector
 
     case SlideElement.Image(source, altText) =>
-      valideteImage(source, altText)
+      validateImage(source, altText)
 
-  private def valideteImage(
+  private def validateImage(
     source: URL,
     altText: String,
   ): Vector[DomainError] =
