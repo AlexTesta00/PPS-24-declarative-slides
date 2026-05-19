@@ -32,26 +32,36 @@ theme:
     - content.toc.scrollspy_offset
 
 nav:
-  - Introduzione: index.md
-  - Dominio: domain.md
-  - Obiettivi: goals.md
-  - Processo di sviluppo: development_process.md
-  - Stack tecnologico: tech_stack.md
-  - Architettura Generale: general_architecture.md
-  - Design di dettaglio: detailed_design.md
-  - Sviluppo iterativo e sprint: development_and_sprint.md
-  - Problemi Incontrati: problem_solution.md
-  - Conclusioni: conclusions.md
+  - Home:
+    - Introduzione: index.md
+    - Obiettivi: goals.md
+  - Utilizzo:
+      Quick Start: cli.md
+  - Modello e DSL:
+      - Dominio e validazione: domain.md
+  - Architettura:
+      - Architettura Generale: general_architecture.md
+      - Design di dettaglio: detailed_design.md
+      - Stack tecnologico: tech_stack.md
+      - Decisioni progettuali: decision.md
+  - Processo e qualità:
+    - Processo di sviluppo: development_process.md
+    - Sprint e retrospettiva: development_and_sprint.md
+    - Problemi e soluzioni: problem_solution.md
+    - Testing: testing.md
+  - Conclusioni:
+      - Valutazione finale e sviluppi futuri: conclusions.md
+      - Limiti Noti: limitations.md
 
-#plugins:
-#  - search
-#  - to-pdf:
-#      enabled_if_env: ENABLE_PDF_EXPORT
-#      output_path: pdf/docs.pdf
-#      cover_title: "PPS24-Declerative Slides"
-#      cover_subtitle: "Alex Testa"
-#      toc_title: "Indice"
-#      toc_level: 3
+plugins:
+  - search
+  - to-pdf:
+      enabled_if_env: ENABLE_PDF_EXPORT
+      output_path: pdf/docs.pdf
+      cover_title: "PPS24-Declerative Slides"
+      cover_subtitle: "Alex Testa"
+      toc_title: "Indice"
+      toc_level: 3
 
 markdown_extensions:
   - admonition

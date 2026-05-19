@@ -43,3 +43,9 @@ Pur non essendo stato formalizzato come Scrum rigoroso, il progetto è stato chi
 | Testing e refactor | TDD, regressioni, pulizia architetturale, manutenzione | 4 | 7 | +3 |
 | Documentazione e presentazione | Scaladoc, sito, immagini, relazione, deploy Pages | 4 | 5 | +1 |
 | **TOT** |  | **60** | **90** | **+30** |
+
+## Commento sugli scostamenti
+
+Lo scostamento principale tra stima ed effettivo non è derivato da una singola funzionalità, ma dall’integrazione tra componenti. Modellare dominio e DSL è stato relativamente lineare; più complesso è stato collegare script `.sc`, bootstrap, Scala CLI, renderer e output file in un flusso unico.
+
+Anche la documentazione ha richiesto più tempo del previsto, non tanto per scrivere pagine descrittive, quanto per mantenere coerenza tra README, sito statico, MkDocs, esempi e codice.

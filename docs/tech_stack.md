@@ -28,7 +28,12 @@ Scala 3 è stata una scelta naturale per un progetto che ruota attorno a un DSL.
 ### Sbt
 Sbt è lo standard de facto per i progetti Scala. La sua flessibilità e il supporto per la gestione delle dipendenze, i test e la compilazione incrementale lo rendono ideale per un progetto che richiede iterazione rapida e affidabilità.
 ### Scala CLI
-La presenza di una CLI che esegue script utente rende Scala CLI uno strumento molto coerente con il problema. Invece di inventare un interprete ad hoc, il sistema sfrutta un’infrastruttura già esistente per valutare la descrizione della presentazione.
+
+Scala CLI è stata una scelta pragmatica. Il progetto aveva bisogno di eseguire file `.sc` scritti dall’utente, ma implementare un parser o un interprete dedicato avrebbe spostato il lavoro su un problema secondario rispetto al DSL.
+
+Usare Scala CLI mi ha permesso di riutilizzare l’infrastruttura Scala esistente e di concentrarmi sul dominio, sulla validazione e sui renderer. Il limite è che la CLI di DeclSlides non è completamente autonoma: dipende da un eseguibile esterno e da una variabile d’ambiente configurata correttamente.
+
+Questa scelta è accettabile per un progetto universitario e per uno strumento tecnico, ma sarebbe da ripensare in una distribuzione più matura.
 ### ScalaTags
 Per il renderer HTML si è preferito evitare un motore di template tradizionale. ScalaTags si integra bene con Scala, permette una costruzione programmatica del DOM e mantiene il rendering vicino alla logica che lo governa aumentando l'espressività.
 ### Tailwind CSS via CDN

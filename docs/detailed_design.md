@@ -30,11 +30,11 @@ Sono stati introdotti piccoli componenti riutilizzabili per:
 
 - Messaggi di errore standardizzati (`ErrorMessages`);
 - Caricamento di resource testuali (`ResourceLoader`);
-- Generazione del boostrap per Scala CLI (`BootstrapSourceFactory`).
-- Registry dei render disponibili (`RendererRegistry`).
+- Generazione del bootstrap per Scala CLI (`BootstrapSourceFactory`).
+- Renderer disponibili (`RendererRegistry`).
 - Messaggi di successo standardizzati (`SuccessMessages`).
 
-La loro presenza riduce la duplicazione e facilità di refactoring.
+La loro presenza riduce la duplicazione e facilita il refactoring.
 
 ## Funzionalità principali
 ### Funzionalità 1: Definizione dichiarativa di una presentazione
@@ -139,7 +139,7 @@ Il progetto include una CLI che consente di passare un file `.sc`, scegliere il 
 1. L'utente invoca il jar o il comando CLI.
 2. La CLI valida gli argomenti e costruisce un `RenderCommand`.
 3. Il `RenderCommand` viene eseguito, orchestrando il processo di rendering.
-4. Il runner genera il boostrap ed esegue lo script tramite Scala CLI.
+4. Il runner genera il bootstrap ed esegue lo script tramite Scala CLI.
 5. Il risultato viene scritto su file e un messaggio di successo viene mostrato.
 
 **Componenti coinvolti**
@@ -276,6 +276,14 @@ Il costo è una dipendenza operativa in più: l’utente deve avere Scala CLI di
 
 Per questo motivo considero la CLI funzionante, ma non ancora ideale dal punto di vista della distribuzione.
 
+### Perché il DSL non valida tutto a compile-time
+
+Una possibile alternativa sarebbe stata codificare più vincoli direttamente nei tipi, ad esempio impedendo a compile-time una slide senza contenuto. Questa scelta avrebbe però complicato molto il DSL, introducendo tipi di stato più difficili da leggere e da usare negli esempi.
+
+Ho preferito mantenere il DSL semplice e spostare la validazione nel dominio. In questo modo l’utente scrive presentazioni con una sintassi naturale, mentre il modello finale viene comunque validato prima del rendering.
+
+Il compromesso è esplicito: DeclSlides privilegia leggibilità e semplicità del DSL rispetto alla massima garanzia statica possibile.
+
 ## Pattern e principi di buona programmazione
 ### Separazione delle responsabilità (Single Responsibility Principle)
 Il progetto è stato costruito applicando con costanza il principio di separazione delle responsabilità. Ogni package ha un ruolo chiaro e ogni componente tende a fare una sola cosa.
@@ -356,7 +364,7 @@ Il progetto dispone di una pipeline CI/CD basata su GitHub Actions. La pipeline 
 1. Test su più sistemi operativi e pubblicazione della coverage solo su macchina Linux;
 2. Build su più sistemi operativi;
 3. Release automatizzata sul branch `main`;
-4. Pubblicazione del sito su GithubPages con documentazione annessa.
+4. Pubblicazione del sito su Github Pages con documentazione annessa.
 
 ```mermaid
 flowchart LR

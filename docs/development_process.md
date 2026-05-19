@@ -72,6 +72,18 @@ Era richiesto che il progetto fosse accompagnato da una documentazione leggibile
 - Sito di presentazione pubblicato automaticamente;
 - GUI per la creazione e modifica di presentazioni.
 
+## Verifiche di qualità
+
+Prima della consegna il progetto dovrebbe essere verificato con:
+
+```bash
+sbt clean compile
+sbt test
+sbt scalafmtCheckAll
+sbt "scalafixAll --check"
+sbt assembly
+```
+
 ### Sviluppi Futuri
 - Supporto a temi personalizzati definiti dall’utente;
 - Supporto a layout aggiuntivi (es. griglia, split);

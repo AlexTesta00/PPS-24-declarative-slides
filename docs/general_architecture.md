@@ -87,3 +87,15 @@ flowchart TB
     MD --> DOMAIN
     MD --> RENDERING
 ```
+
+## Regola di dipendenza tra i layer
+
+La regola principale adottata è che il dominio non deve dipendere da CLI, renderer o application layer. Il dominio descrive cosa sia una presentazione valida; gli altri layer decidono come costruirla, eseguirla o trasformarla in output.
+
+Questa scelta ha guidato l’organizzazione dei package:
+
+- `declslides.domain` non conosce Scala CLI;
+- `declslides.dsl` costruisce il dominio, ma non renderizza;
+- `declslides.rendering` legge il dominio e produce documenti;
+- `declslides.cli` non contiene regole di dominio;
+- `declslides.application` collega i pezzi.
