@@ -1,6 +1,13 @@
 # Testing e qualità
 
-La suite di test è stata organizzata per verificare separatamente i principali livelli del progetto.
+La fase di testing è stata pensata come una parte centrale del progetto, non solo come controllo finale sul codice scritto.  
+L'obiettivo principale è stato verificare che i diversi componenti funzionassero correttamente in isolamento, mantenendo il comportamento del sistema prevedibile e facilmente controllabile.
+
+Per rendere i test più leggibili ed espressivi è stato utilizzato **ScalaTest**, in particolare lo stile:
+
+```scala
+extends AnyFlatSpec with Matchers
+```
 
 ## Test del dominio
 

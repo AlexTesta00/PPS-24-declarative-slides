@@ -36,7 +36,7 @@ nav:
     - Introduzione: index.md
     - Obiettivi: goals.md
   - Utilizzo:
-      Quick Start: cli.md
+      - Quick Start: cli.md
   - Modello e DSL:
       - Dominio e validazione: domain.md
   - Architettura:
@@ -49,6 +49,7 @@ nav:
     - Sprint e retrospettiva: development_and_sprint.md
     - Problemi e soluzioni: problem_solution.md
     - Testing: testing.md
+    - CI/CD: ci_cd.md
   - Conclusioni:
       - Valutazione finale e sviluppi futuri: conclusions.md
       - Limiti Noti: limitations.md
