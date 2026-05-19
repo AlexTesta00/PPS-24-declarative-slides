@@ -50,7 +50,7 @@ Dal punto di vista formativo, il progetto doveva rappresentare un caso realistic
 - integrazione con pipeline CI/CD;
 - documentazione tecnica strutturata.
 
-## Obiettivi opzionali
+## Obiettivi non implementati / futuri
 Alcuni obiettivi possono essere considerati opzionali, nel senso che rappresentano funzionalità aggiuntive che arricchiscono il progetto ma non sono essenziali per la sua validità. Tra questi:
 
 - Supporto a temi personalizzati, con definizione di palette cromatiche e stili;

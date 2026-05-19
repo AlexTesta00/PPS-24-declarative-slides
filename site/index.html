@@ -41,7 +41,7 @@
           </nav>
           <div class="flex items-center gap-4 md:gap-8">
             <a
-                    href="https://alextesta00.github.io/PPS-24-declarative-slides/"
+                    href="https://github.com/AlexTesta00/PPS-24-declarative-slides"
                     class="rounded-full border border-black/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] transition hover:border-black hover:bg-black hover:text-white"
             >
               GitHub
@@ -63,7 +63,7 @@
       </header>
 
       <main id="top">
-        <section id="overview" class="border-b border-black/5">
+        <section id="overview" class="">
           <div class="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl grid-cols-1 px-6 md:px-10 lg:grid-cols-12">
             <div class="relative flex items-end border-r-0 border-black/5 py-16 lg:col-span-7 lg:border-r lg:py-24">
               <div class="w-full">
@@ -95,14 +95,6 @@
                     Compile with the jar
                   </a>
                 </div>
-              </div>
-
-              <div class="pointer-events-none absolute inset-x-0 bottom-0 hidden h-72 items-end gap-6 lg:flex">
-                <div class="h-24 w-24 border border-line"></div>
-                <div class="h-40 w-32 border border-line"></div>
-                <div class="h-56 w-44 border border-line"></div>
-                <div class="h-72 w-56 border border-line"></div>
-                <div class="h-48 w-40 border border-line"></div>
               </div>
             </div>
 
@@ -274,13 +266,13 @@ presentation("Hello DeclSlides")
                     <span class="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/45">Jar-based workflow</span>
                   </div>
                   <pre class="overflow-x-auto p-6 text-sm leading-7 md:p-8"><code># Render HTML
-java -jar declslides.jar   --input examples/HelloPresentation.sc   --format html   --output dist/hello.html
+java -jar declslides-version.jar   --input examples/HelloPresentation.sc   --format html   --output dist/hello.html
 
 # Render plain text
-java -jar declslides.jar   --input examples/HelloPresentation.sc   --format text   --output dist/hello.txt
+java -jar declslides-version.jar   --input examples/HelloPresentation.sc   --format text   --output dist/hello.txt
 
 # Render Markdown
-java -jar declslides.jar   --input examples/HelloPresentation.sc   --format markdown   --output dist/hello.md</code></pre>
+java -jar declslides-version.jar   --input examples/HelloPresentation.sc   --format markdown   --output dist/hello.md</code></pre>
                 </div>
 
                 <div class="mt-8 overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-sm">
@@ -310,7 +302,7 @@ presentation("Release demo") {
 
       <footer class="border-t border-black/5 bg-paper">
         <div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-10">
-          <p>DeclSlides — DSL for presentations in Scala 3.</p>
+          <p>DeclSlides - DSL for presentations in Scala 3.</p>
           <p>
             Develop by Alex Testa
           </p>

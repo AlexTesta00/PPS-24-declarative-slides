@@ -50,10 +50,13 @@ In particolare, alcune informazioni visuali, come il layout centrato, non hanno 
 Una possibile evoluzione sarebbe introdurre metadata espliciti nel Markdown o distinguere tra renderer “di presentazione” e renderer “di documentazione”.
 
 # Conclusione
-DeclSlides rappresenta un progetto software di dimensione contenuta ma di forte densità ingegneristica. Il problema affrontato, descrivere e generare presentazioni in modo dichiarativo, validato e multi-formato, è stato risolto con una soluzione coerente, tecnicamente solida e progressivamente estesa senza compromettere la struttura del sistema.
 
-Gli obiettivi iniziali sono stati raggiunti: il progetto permette di definire una presentazione tramite DSL, validarla con regole esplicite, renderizzarla in più formati, eseguirla da CLI e presentarla tramite un sito dedicato. Ancora più importante, queste funzionalità non sono state costruite in modo monolitico o improvvisato, ma inserite in un’architettura chiara, con una forte attenzione alla separazione delle responsabilità, alla leggibilità del codice e alla qualità del processo di sviluppo.
+DeclSlides ha raggiunto l’obiettivo principale: mostrare come un dominio relativamente semplice, quello delle presentazioni, possa essere modellato con un DSL embedded in Scala 3, validato esplicitamente e trasformato in più formati di output.
 
-Le principali scelte ingegneristiche, dominio tipizzato, error handling esplicito, layer distinti, registry dei renderer, refactoring progressivi, TDD, hanno dato al progetto una struttura che va oltre l’esercizio didattico. DeclSlides si presenta come un sistema piccolo, ma progettato seriamente, capace di mostrare non soltanto un risultato finale funzionante, ma anche un percorso di sviluppo consapevole.
+La parte più riuscita del progetto è la separazione tra dominio, DSL, application layer, renderer e CLI. Questa separazione ha reso possibile aggiungere progressivamente nuove funzionalità, come immagini, footer e Markdown, senza riscrivere il nucleo del sistema.
 
-Dal punto di vista formativo e professionale, il progetto ha permesso di consolidare competenze fondamentali di ingegneria del software: analisi, modellazione, design, test, automazione, documentazione e comunicazione tecnica. Per questo motivo, DeclSlides può essere considerato non solo un prodotto software riuscito, ma anche una dimostrazione concreta di metodo, rigore e maturità progettuale.
+La parte più delicata rimane la distribuzione della CLI. La scelta di usare Scala CLI per eseguire gli script `.sc` ha semplificato l’implementazione, ma richiede una configurazione esterna tramite `DECLSLIDES_SCALA_CLI`. Per una versione più matura sarebbe utile ridurre questa dipendenza o documentare ancora meglio il processo di installazione.
+
+Dal punto di vista formativo, il progetto è stato utile perché ha costretto a prendere decisioni concrete: quali vincoli mettere nel dominio, quali lasciare al DSL, come rappresentare gli errori, come mantenere estendibile il rendering e come separare un’interfaccia CLI dal resto dell’applicazione.
+
+Il risultato non è un framework completo per creare presentazioni, ma un prototipo solido e coerente che dimostra l’applicazione di principi di programmazione funzionale, modellazione di dominio, testing e progettazione modulare.
